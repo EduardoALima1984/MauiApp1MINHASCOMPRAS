@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
 
 namespace MauiApp1MINHASCOMPRAS.Modelos
 {
-    internal class Produto
+    public class Produto
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string Descrição { get; set; }
+        public double Quantidade { get; set; }
+        public double Preço { get; set; }
     }
 }
