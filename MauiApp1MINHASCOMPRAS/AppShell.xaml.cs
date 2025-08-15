@@ -1,10 +1,13 @@
-﻿namespace MauiApp1MINHASCOMPRAS
+﻿using MauiApp1MINHASCOMPRAS.Visuais;
+
+namespace MauiApp1MINHASCOMPRAS;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        Routing.RegisterRoute(nameof(NovoProduto), typeof(NovoProduto));
+        Routing.RegisterRoute(nameof(EditarProduto), typeof(EditarProduto));
     }
 }

@@ -1,13 +1,10 @@
-﻿namespace MauiApp1MINHASCOMPRAS
-{
-    public partial class App : Application
-    {
-        public App()
-        {
-            InitializeComponent();
+﻿namespace MauiApp1MINHASCOMPRAS;
 
-            //MainPage = new AppShell();
-            MainPage = new NavigationPage(new Visuais.ListaProduto());
-        }
+public partial class App : Application
+{
+    public App()
+    {
+        InitializeComponent();
+        MainPage = new AppShell();
     }
 }

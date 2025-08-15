@@ -5,47 +5,44 @@ namespace MauiApp1MINHASCOMPRAS.ajudadores
 {
     public class SQLiteDatabaseHelper
     {
-        readonly SQLiteAsyncConnection _conn;
+        private readonly SQLiteAsyncConnection _conn;
 
-        public SQLiteDatabaseHelper(string path) 
-        { 
-           _conn = new SQLiteAsyncConnection(path);
+        public SQLiteDatabaseHelper(string path)
+        {
+            _conn = new SQLiteAsyncConnection(path);
             _conn.CreateTableAsync<Produto>().Wait();
         }
 
-        public Task<int> Insert(Produto p) 
-        {
-            return _conn.InsertAsync(p);
+        public Task<int> Insert(Produto p) =>
+            _conn.InsertAsync(p);
 
-        }
-
-        public Task<List<Produto>> Update(Produto p) 
+        public Task<int> Update(Produto p)
         {
-            string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=?  Where Id=?";
-            return _conn.QueryAsync<Produto>(sql,
-                                             p.Descricao,
-                                             p.Quantidade,
-                                             p.Preco,
-                                             p.Id);
+            const string sql = "UPDATE Produto SET Descricao = ?, Quantidade = ?, Preco = ? WHERE Id = ?";
+            return _conn.ExecuteAsync(sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
         }
 
         public Task<int> Delete(int id)
         {
-            return _conn.Table<Produto>().DeleteAsync(i => i.Id == id);
-        
+            const string sql = "DELETE FROM Produto WHERE Id = ?";
+            return _conn.ExecuteAsync(sql, id);
         }
 
-        public Task<List<Produto>> GetAll() 
+        public Task<List<Produto>> GetAll() =>
+            _conn.Table<Produto>().ToListAsync();
+
+        public async Task<Produto?> GetById(int id)
         {
-            return _conn.Table<Produto>().ToListAsync();
+            var item = await _conn.FindAsync<Produto>(id);
+            return item;
         }
-
-        public Task<List<Produto>> Search(string q) 
+        public Task<List<Produto>> Search(string q)
         {
-            string sql = "SELECT * Produto  Where Descricao LIKE `%" +q + "%`";
-            return _conn.QueryAsync<Produto>(sql);
+            if (string.IsNullOrWhiteSpace(q))
+                return GetAll();
 
+            const string sql = "SELECT * FROM Produto WHERE Descricao LIKE ?";
+            return _conn.QueryAsync<Produto>(sql, $"%{q}%");
         }
-
     }
 }
