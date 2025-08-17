@@ -5,12 +5,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Novo Produto">
 
-    <VerticalStackLayout Padding="16" Spacing="12">
-        <Entry x:Name="txtDesc" Placeholder="Descrição" />
-        <Entry x:Name="txtQtd"  Placeholder="Quantidade" Keyboard="Numeric" />
-        <Entry x:Name="txtPreco" Placeholder="Preço" Keyboard="Numeric" />
-
-        <Button Text="Salvar" Clicked="OnSalvarClicked"/>
-        <Button Text="Cancelar" Clicked="OnCancelarClicked" />
-    </VerticalStackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="16" Spacing="12">
+        <Label Text="Descrição do Produto:" />
+        <Entry x:Name="txt_descricao" />
+    
+        <Label Text="Quantidade:" />
+        <Entry x:Name="txt_quantidade"  Keyboard="Numeric"/>
+    
+        <Label Text="Preço Unitário" />
+        <Entry x:Name="txt_preco" Keyboard="Numeric" />
+        
+        </VerticalStackLayout>
+     </ContentPage.Content>
+    
 </ContentPage>

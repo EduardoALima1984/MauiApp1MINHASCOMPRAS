@@ -2,48 +2,11 @@
     x:Class="MauiApp1MINHASCOMPRAS.Visuais.ListaProduto"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Produtos">
+    Title="Minhas Compras">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Novo" Clicked="OnNovoClicked" />
+        <ToolbarItem Text="Novo" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Soma"/>
+
     </ContentPage.ToolbarItems>
-
-    <VerticalStackLayout Padding="12" Spacing="8">
-        <SearchBar x:Name="sbBusca"
-                   Placeholder="Buscar por descrição"
-                   TextChanged="OnBuscaChanged"/>
-
-        <CollectionView x:Name="cvProdutos" ItemsSource="{Binding Produtos}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems Mode="Reveal">
-                                <SwipeItem Text="Editar"
-                                           BackgroundColor="#4CAF50"
-                                           Invoked="OnEditarInvoked"
-                                           CommandParameter="{Binding}" />
-                                <SwipeItem Text="Excluir"
-                                           BackgroundColor="#F44336"
-                                           Invoked="OnExcluirInvoked"
-                                           CommandParameter="{Binding}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-
-                        <Grid Padding="10"
-                              ColumnDefinitions="*,Auto"
-                              RowDefinitions="Auto,Auto">
-                            <Label Grid.Row="0" Grid.ColumnSpan="2"
-                                   Text="{Binding Descricao}"
-                                   FontAttributes="Bold"/>
-                            <Label Grid.Row="1" Grid.Column="0"
-                                   Text="{Binding Quantidade, StringFormat='Qtd: {0}'}"/>
-                            <Label Grid.Row="1" Grid.Column="1"
-                                   Text="{Binding Total, StringFormat='Total: {0:C2}'}"/>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
 </ContentPage>

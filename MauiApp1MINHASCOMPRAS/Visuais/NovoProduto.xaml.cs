@@ -7,34 +7,38 @@ namespace MauiApp1MINHASCOMPRAS.Visuais;
 public partial class NovoProduto : ContentPage
 {
     private readonly SQLiteDatabaseHelper _db;
+
+    public NovoProduto()
+    {
+        InitializeComponent();
+        _db = App.Db;
+    }
+
     public NovoProduto(SQLiteDatabaseHelper db)
     {
         InitializeComponent();
         _db = db;
     }
 
-    private async void OnSalvarClicked(object sender, EventArgs e)
+
+    private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(txtDesc.Text))
+        try
         {
-            await DisplayAlert("Atenção", "Informe a descrição.", "OK");
-            return;
+            Produto p = new Produto
+            {
+                Descricao = txt_descricao.Text,
+                Quantidade = Convert.ToDouble(txt_quantidade.Text),
+                Preco = Convert.ToDouble(txt_preco.Text)
+            };
+
+            await App.Db.Insert(p);
+            await DisplayAlert("Sucesso!", "Registro Inserido", "OK");
+
         }
-
-        _ = double.TryParse(txtQtd.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out var qtd);
-        _ = double.TryParse(txtPreco.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out var preco);
-
-        var p = new Produto
+        catch (Exception ex)
         {
-            Descricao = txtDesc.Text!.Trim(),
-            Quantidade = qtd,
-            Preco = preco
-        };
-
-        await _db.Insert(p);
-        await Shell.Current.GoToAsync(".."); // volta para a lista
+            await DisplayAlert("OPS", ex.Message, "Ok");
+        }
     }
-
-    private async void OnCancelarClicked(object sender, EventArgs e) =>
-        await Shell.Current.GoToAsync("..");
 }
