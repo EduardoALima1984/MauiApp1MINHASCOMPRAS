@@ -9,4 +9,35 @@
         <ToolbarItem Text="Soma"/>
 
     </ContentPage.ToolbarItems>
+    <VerticalStackLayout>
+        <SearchBar x:Name="txt_search" Placeholder="Busca de Produtos"/>
+        <ListView x:Name="lst_produtos">
+            <ListView.Header>
+                <Grid ColumnDefinitions="*, *, *, *, *,*">
+                    <Label Grid.Column="0" Text="ID" />
+                    <Label Grid.Column="0" Text="Descriçào" />
+                    <Label Grid.Column="0" Text="Preço" />
+                    <Label Grid.Column="0" Text="Qnt" />
+                    <Label Grid.Column="0" Text="Total" />
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Remover"/>
+                        </ViewCell.ContextActions>
+                        <Grid ColumnDefinitions="*, *, *, *, *,*">
+                            <Label Grid.Column="0" Text="{Binding Id}" />
+                            <Label Grid.Column="0" Text="{Binding Descrição}" />
+                            <Label Grid.Column="0" Text="{Binding Preço}" />
+                            <Label Grid.Column="0" Text="{Binding Qnt}" />
+                            <Label Grid.Column="0" Text="{Binding Total}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+                
+        </ListView>
+    </VerticalStackLayout>
 </ContentPage>
