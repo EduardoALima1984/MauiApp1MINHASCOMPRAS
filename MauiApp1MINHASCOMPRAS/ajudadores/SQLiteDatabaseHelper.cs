@@ -44,5 +44,9 @@ namespace MauiApp1MINHASCOMPRAS.ajudadores
             const string sql = "SELECT * FROM Produto WHERE Descricao LIKE ?";
             return _conn.QueryAsync<Produto>(sql, $"%{q}%");
         }
+        public async Task<int> DeleteAllProdutos()
+        {
+            return await _conn.ExecuteAsync("DELETE FROM Produto");
+        }
     }
 }

@@ -7,7 +7,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Novo" Clicked="ToolbarItem_Clicked" />
         <ToolbarItem Text="Soma" Clicked="ToolbarItem_Clicked_1"/>
-
+        <ToolbarItem Text="Deletar" Clicked="ToolbarItem_Clicked_2"/>   
     </ContentPage.ToolbarItems>
     <VerticalStackLayout>
         <SearchBar x:Name="txt_search" 
