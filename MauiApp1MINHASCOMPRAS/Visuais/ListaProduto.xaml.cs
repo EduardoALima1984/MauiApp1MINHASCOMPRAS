@@ -81,10 +81,10 @@ public partial class ListaProduto : ContentPage
 
         try
         {
-            // chama o método que vamos criar no helper
+      
             int linhas = await App.Db.DeleteAllProdutos();
 
-            // limpa a coleção para refletir na tela
+        
             lista.Clear();
 
             await DisplayAlert("Concluído", $"{linhas} produto(s) apagado(s).", "OK");
@@ -106,7 +106,7 @@ public partial class ListaProduto : ContentPage
             bool confirm = await DisplayAlert(
                 "Tem Certeza?", $"Remover {p.Descricao}?", "Sim", "Não");
 
-            if (!confirm)
+            if (confirm)
             {
                 await App.Db.Delete(p.Id);
                 lista.Remove(p);
