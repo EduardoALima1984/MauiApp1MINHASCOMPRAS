@@ -9,7 +9,7 @@ public partial class App : Application
     {
         get
         {
-            if(_db == null)
+            if (_db == null)
             {
                 string path = Path.Combine(
                     Environment.GetFolderPath(

@@ -81,10 +81,10 @@ public partial class ListaProduto : ContentPage
 
         try
         {
-      
+
             int linhas = await App.Db.DeleteAllProdutos();
 
-        
+
             lista.Clear();
 
             await DisplayAlert("Concluído", $"{linhas} produto(s) apagado(s).", "OK");
@@ -118,4 +118,13 @@ public partial class ListaProduto : ContentPage
         }
 
     }
+
+    private async void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem is not Produto p) return;
+
+        await Shell.Current.GoToAsync($"{nameof(EditarProduto)}?id={p.Id}");
+        ((ListView)sender).SelectedItem = null;
+    }
+
 }

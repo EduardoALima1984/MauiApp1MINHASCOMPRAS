@@ -3,14 +3,20 @@
     x:Class="MauiApp1MINHASCOMPRAS.Visuais.EditarProduto"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Editar Produto">
+    Title="{Binding Descricao}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Salvar" Clicked="OnSalvarClicked"/>
+    </ContentPage.ToolbarItems>
 
     <VerticalStackLayout Padding="16" Spacing="12">
-        <Entry x:Name="txtDesc" Placeholder="Descrição" />
-        <Entry x:Name="txtQtd"  Placeholder="Quantidade" Keyboard="Numeric" />
-        <Entry x:Name="txtPreco" Placeholder="Preço" Keyboard="Numeric" />
+        <Label Text="Descrição do Produto:" />
+        <Entry x:Name="txt_descricao" />
 
-        <Button Text="Salvar alterações" Clicked="OnSalvarClicked"/>
-        <Button Text="Cancelar" Clicked="OnCancelarClicked" />
+        <Label Text="Quantidade:" />
+        <Entry x:Name="txt_quantidade" Keyboard="Numeric"/>
+
+        <Label Text="Preço Unitário" />
+        <Entry x:Name="txt_preco" Keyboard="Numeric" />
     </VerticalStackLayout>
 </ContentPage>
